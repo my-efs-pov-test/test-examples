@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: "aquajcampbell/grphql-vulnerable:c07e95e057ac0740d2d29870af4871d46659c345"
+          tags: "aquajcampbell/grphql-vulnerable:${{ github.sha }}"
       - name: Manifest Generation
         run: |
           export BILLY_SERVER=https://billy.codesec.aquasec.com
@@ -47,7 +47,7 @@ jobs:
             --access-token "${{ secrets.GITHUB_TOKEN }}" \
             --aqua-key "${{ secrets.AQUA_KEY }}" \
             --aqua-secret "${{ secrets.AQUA_SECRET }}" \
-            --artifact-path "aquajcampbell/grphql-vulnerable:c07e95e057ac0740d2d29870af4871d46659c345" 
+            --artifact-path "aquajcampbell/grphql-vulnerable:${{ github.sha }}" 
 
             # The docker image name:tag of the newly built image
             # --artifact-path "my-image-name:${{ env.tag-version }}" 
