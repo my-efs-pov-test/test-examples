@@ -13,10 +13,12 @@ jobs:
         with:
           scan-type: 'fs'
           security-checks: 'vuln,config,secret'
+          PACKAGE_JSON: "1"
+          SAST: "1"
           hide-progress: false
           format: 'table'
           severity: 'MEDIUM,HIGH,CRITICAL'
-          args: trivy fs --security-checks config,vuln,secret . --sast --package-json --dotnet-proj
+          # args: trivy fs --security-checks config,vuln,secret . --sast --package-json --dotnet-proj
           # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
           # To enable SAST scanning, add: --sast
           # To enable npm/dotnet non-lock file scanning, add: --package-json / --dotnet-proj
@@ -25,8 +27,8 @@ jobs:
           AQUA_SECRET: ${{ secrets.AQUA_SECRET }}
           GITHUB_TOKEN: ${{ github.token }}
           TRIVY_RUN_AS_PLUGIN: 'aqua'
-          PACKAGE_JSON: "1"
-          SAST: "1"
+          # PACKAGE_JSON: "1"
+          # SAST: "1"
       - name: Manifest Generation
         run: |
           export BILLY_SERVER=https://billy.codesec.aquasec.com
